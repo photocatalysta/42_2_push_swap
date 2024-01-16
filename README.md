@@ -12,14 +12,14 @@ The exercise asks to build a program that sorts the elements in a Stack of N ele
 For this exercises 2 stacks are given, a Stack A and a Stack B. The Stack A is full and initialised based on the user input while B is a stack of the same dimensions, but empty. Stack B is to be used for convenience.
 
 Fix output </br>
-| 1 |
-| 2 |
-| 3 |
-| 4 |
-| 5 |
-| 6 |
-| 7 |
-| 8 |
+| 1 | </br>
+| 2 | </br>
+| 3 | </br>
+| 4 | </br>
+| 5 | </br>
+| 6 | </br>
+| 7 | </br>
+| 8 | </br>
 | Stack A | Stack B
 
 The task is to swap the elements in the Stack in the minimum amount of steps possible.
