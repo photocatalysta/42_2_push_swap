@@ -1,7 +1,7 @@
 # Push Swap
 Because Swap push was not enough
 
-## Summary:
+## Summary
 
 This project will make you sort data on a stack, with a limited set of instructions, using the lowest possible number of actions. To succeed you’ll have to manipulate various types of algorithms and choose the most appropriate solution (out of many) for an optimized data sorting.
 
@@ -26,10 +26,33 @@ The task is to swap the elements in the Stack in the minimum amount of steps pos
 
 # Actions allowed
 
+At the beginning:
+
+* The stack a contains a random amount of negative and/or positive numbers which cannot be duplicated.
+* The stack b is empty.
+
+The goal is to sort in ascending order numbers into stack a. 
+
+To do so you have the following operations at your disposal:
+
 * Swap: swap the position of the two elements on top of the list. This can be done for Stack A, Stack B or both at the same time;
-* Rotate up: The first element of the stack becomes the last and all the others are pushed one place up. This can be done for Stack A, Stack B or both at the same time;
-* Rotate down: The last element of the stack becomes the first one and all the others are pushed down a position. This can be done for Stack A, Stack B or both at the same time;
-* Change of stack: Move the top element of Stack A to the top of Stack B or viceversa.
+  * `sa` (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
+  * `sb` (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
+  * `ss` : sa and sb at the same time.
+  
+* Push stack: Move the top element of Stack A to the top of Stack B or viceversa.
+  * `pb` (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+  * `pa` (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+
+* Rotate (Up): The first element of the stack becomes the last and all the others are pushed one place up. This can be done for Stack A, Stack B or both at the same time;
+  * `ra` (rotate a): Shift up all elements of stack a by 1. The first element becomes the last one.
+  * `rb` (rotate b): Shift up all elements of stack b by 1. The first element becomes the last one.
+  * `rr` : ra and rb at the same time.
+
+* Rotate reverse (Down): The last element of the stack becomes the first one and all the others are pushed down a position. This can be done for Stack A, Stack B or both at the same time;
+  * `rra` (reverse rotate a): Shift down all elements of stack a by 1. The last element becomes the first one.
+  * `rrb` (reverse rotate b): Shift down all elements of stack b by 1. The last element becomes the first one.
+  * `rrr` : rra and rrb at the same time.
 
 # The algorithm to be used
 
@@ -84,6 +107,7 @@ Possible cases:
     * 3 1 2 4 -> Down -> Swap -> Up 2x
 
 Combination not considered:
+
 * 1 2 4 3
 * 1 3 4 2
 * 1 4 3 2
@@ -96,6 +120,7 @@ MOving from Stack A to B and back requires that at least two elements are moved 
 Moving two elements may account as a Rotation Up in Stack A as well, But at least 5 moves should be considered
 
 > Stupid moves: 
+>
 > * Double swap
 > * Rotate Up + Rotate Down
 > Simmetries:
