@@ -198,4 +198,21 @@ Although it may seem the use of 1 is advantageous, that would require to rotate 
 From this we learnt that:
 * Rotation is fundamental to ensure the order.
 * We could Add A to B in the second iteration to save 2 moves and split from B to A the 1** in the 3rd
-    * THis is convinient only if N % $2^{move}$ is < $2^{move - 1}$ and N % $2^{move}$
+    * This is convinient only if N % $2^{move}$ is < $2^{move - 1}$ and N % $2^{move}$ 
+    
+## Check the actual case for the previous situation
+
+Moving always ones to B leads to a reverted list:
+
+|  A  |  A  |  A  |  A  |
+| :-: | :-: | :-: | :-: |
+| 100 | 011 | 011 | 101 |
+| 011 | 001 | 010 | 100 |
+| 000 | 101 | 001 | 011 |
+| 010 | 100 | 101 | 010 |
+| 001 | 000 | 100 | 001 |
+| 101 | 010 | 000 | 000 |
+
+--> This leads to a reverted list...
+
+What about other strategies? Can you find faster ones?

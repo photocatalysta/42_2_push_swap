@@ -1,7 +1,7 @@
 SRCS = ft_ .c
 SRCS_BONUS = ft_ .c
 
-HEADERS = ft_ .h
+HEADERS = ft_push_swap.h
 HEADERS_BONUS = ft_ .h
 
 OBJS = ${SRCS:.c=.o}
