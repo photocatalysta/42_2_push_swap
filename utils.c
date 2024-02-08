@@ -14,37 +14,45 @@
 
 void    ft_print_error(void)
 {
-    write(2, "Error\n", 6);
+	write(2, "Error\n", 6);
 }
 
-void    ft_putstr(char *str)
+int is_ordered(t_list *a)
 {
-    int i;
-
-    if (!str)
-        return (NULL);
-    i = 0;
-    while (str[i])
-        write (1, &str[i++], 1);
+	while (a->next)
+	{
+		if (a->content > a->next->content)
+			return (0);
+	}
+	return (1);
 }
 
-int ft_atoi(char *str)
+void	ft_sort_int(int	**arr, int size)
 {
-    int val;
-    int sign;
+	int	i;
+	int	**temp;
 
-    val = 0;
-    sign = 1;
-    while (*str && *str != '\t' && *str != '\n' && *str != '\r' 
-                && *str != ' ' && *str != '\f' && *str != '\v')
-        str++;
-    if (*str == '+' || *str == '-')
-    {
-        if (*str == '-')
-            sign *= -1;
-        str++;
-    }
-    while (*str)
-        val = 10 * val + *str - '0';
-    return (val);
+	i = 0;
+	temp = NULL;
+	while (++i < size)
+		if (*arr[i-1] < *arr[i])
+		{
+			*temp = *arr[i-1];
+			*arr[i-1] = *arr[i];
+			*arr[i] = *temp;
+		}
+}
+
+int	get_arr_pos(int *arr, int size, int val) //What if there are 2 identical numbers?
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{	
+		if (arr[i] == val)
+			return (0);
+		i++;
+	}
+	return (val);
 }

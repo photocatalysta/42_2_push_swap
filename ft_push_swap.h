@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "libft/libft.h"
 
 typedef struct s_stack
 {
@@ -24,8 +25,13 @@ typedef struct s_stack
 //ADD FUNCTIONS
 
 
+
+void    rotate_both(t_stack *a, t_stack *b);
+void    rotate_rev_both(t_stack *a, t_stack *b);
 void    ft_print_error(void);
-void    ft_putstr(char *str);
-int 	ft_atoi(char *str);
+int     is_ordered(t_list *a);
+void	ft_sort_int(int	**arr, int size);
+int     get_arr_pos(int *arr, int size, int val);
+void    ft_print_error(void);
 
 #endif
