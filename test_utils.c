@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:22:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 15:09:47 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 15:18:11 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	test_push(t_list **stackA, t_list **stackB)
 	ft_push(stackB, stackA);
 	print_list(*stackA, 10);
 	print_list(*stackB, 10);
+	printf("This should fail:\n");
+	ft_push(stackB, stackA);
 }
 
 void	test_stack(t_list *stackA, t_list *stackB)
@@ -85,6 +87,7 @@ void	test_stack(t_list *stackA, t_list *stackB)
 //	write(1, "\nBella\n", 6);
 /*	test_swap(&stackA);
 	print_list(stackA, 10);*/
+	test_push(&stackA, &stackB);
 	test_push(&stackA, &stackB);
 	test_success("  Push  ");
 	(void) stackB;

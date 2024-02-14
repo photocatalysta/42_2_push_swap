@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 18:01:55 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 15:06:45 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 15:19:32 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void ft_push(t_list **stackFrom, t_list **stackTo)
 {
 	t_list *temp;
 
+	if (!stackFrom || !(*stackFrom))
+		free_exit(*stackFrom, *stackTo, 1);
 	temp = ft_lstnew((*stackFrom)->content);
 	ft_lstadd_front(stackTo, temp);
 

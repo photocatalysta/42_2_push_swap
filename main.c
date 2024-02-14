@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:13:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 15:10:32 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 15:16:41 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ t_list	*ft_init_args(t_list *stack, char **argv)
 		if (temp_val < INT_MIN || temp_val > INT_MAX)
 			free_exit(stack, NULL, 1);
 		val = (int) temp_val;
-		if (i == 1)
-		{
-			stack->content = val;
-			continue;
-		}
 		temp = ft_lstnew(val);
 		if (!temp)
 			free_exit(stack, NULL, 1);
@@ -84,14 +79,10 @@ int main(int argc, char **argv)
 	t_list	*stackA;
 	t_list	*stackB;
 
-	stackA = malloc(sizeof(t_list));
-	if (!stackA)
-		free_exit(stackA, NULL, 1);
+	stackA = NULL;
 	stackA = ft_init_list(argc, argv, stackA);
 	// init stackB here for convenience;
-	stackB = malloc(sizeof(t_list));
-	if (!stackB)
-		free_exit(stackA, stackB, 1);
+	stackB = NULL;
 	ft_push_swap(stackA, stackB);
 	return (0);
 }
