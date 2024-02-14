@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_utils.c                                 :+:      :+:    :+:   */
+/*   test_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 11:07:44 by jsala             #+#    #+#             */
-/*   Updated: 2024/01/31 11:07:44 by jsala            ###   ########.fr       */
+/*   Created: 2024/02/14 10:22:01 by jsala             #+#    #+#             */
+/*   Updated: 2024/02/14 13:17:32 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
+#include <stdio.h>
 
-void rotate_both(t_stack *a, t_stack *b)
+void	print_list(t_list *list)
 {
-	rotate(a);
-	rotate(b);
-	write(1, "rr\n", 4);
-}
-
-void rotate_rev_both(t_stack *a, t_stack *b)
-{
-	rotate_rev(a);
-	rotate_rev(b);
-	write(1, "rrr\n", 4);
+	while (list)
+	{
+		printf("Val list: %i;\n", list->content);
+		list = list->next;
+	}
 }

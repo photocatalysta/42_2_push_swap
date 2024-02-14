@@ -3,56 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsala <jacopo.sala@student.barcelona.co    +#+  +:+       +#+        */
+/*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:23:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/01/16 22:40:52 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 13:15:19 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void    ft_print_error(void)
+int	ft_chknum(char *str)
 {
-	write(2, "Error\n", 6);
-}
+	int	i;
+	int	j;
 
-int is_ordered(t_list *a)
-{
-	while (a->next)
+	i = 0;
+	j = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] == '0')
+		i++;
+	while (str[i])
 	{
-		if (a->content > a->next->content)
+		j++;
+		if (!ft_isdigit(str[i]) || j > 10)
 			return (0);
+		i++;
 	}
 	return (1);
 }
 
-void	ft_sort_int(int	**arr, int size)
+int	ft_lstval(t_list *stack, int val)
 {
-	int	i;
-	int	**temp;
-
-	i = 0;
-	temp = NULL;
-	while (++i < size)
-		if (*arr[i-1] < *arr[i])
-		{
-			*temp = *arr[i-1];
-			*arr[i-1] = *arr[i];
-			*arr[i] = *temp;
-		}
+	while (stack)
+	{
+		if (stack->content == val)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
 }
 
-int	get_arr_pos(int *arr, int size, int val) //What if there are 2 identical numbers?
+int is_ordered(t_list *stack)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{	
-		if (arr[i] == val)
+	while (stack->next)
+	{
+		if (stack->content > stack->next->content)
 			return (0);
-		i++;
+		stack = stack->next;
 	}
-	return (val);
+	return (1);
+}
+
+t_list	*ft_delone(t_list *stack)
+{
+	t_list	*temp;
+
+	if (!stack)
+		return (NULL);
+	if (stack->next)
+	{
+		temp = stack;
+		stack = stack->next;
+		free(temp);
+	}
+	return (stack);
+}
+
+void	ft_clear(t_list **lst)
+{
+	t_list	*temp;
+
+	while (*lst)
+	{
+		temp = *lst;
+		*lst = (*lst)->next;
+		free(temp);
+	}
+}
+
+void	free_exit(t_list *stackA, t_list *stackB, int exit_val)
+{
+	if (exit_val == 1)
+		write(2, "Error\n", 6);
+	else
+		write(1, "Success!\n", 9);
+	if (stackA)
+		ft_clear(&stackA);
+	if (stackB)
+		ft_clear(&stackB);
+	exit(exit_val);
 }

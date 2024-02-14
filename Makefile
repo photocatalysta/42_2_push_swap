@@ -1,32 +1,51 @@
-SRCS = ft_ .c
-SRCS_BONUS = ft_ .c
+SRCS = rotate.c swap.c push.c utils.c main.c init_list.c test_utils.c
+SRCS_BONUS = ft_checker.c
 
 HEADERS = ft_push_swap.h
-HEADERS_BONUS = ft_ .h
+
+LIBFT = libft/libft.a
+LIBFT_DIR = libft
 
 OBJS = ${SRCS:.c=.o}
 OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 DEPS = ${SRCS:.c=.d}
 
+MAKEFILE = Makefile
+
 NAME = push_swap
-FLAGS = -Wall -Wextra -Werror
+
+CC = gcc
+FLAGS = -Wall -Wextra -Werror -MMD
 REMOVE = rm -f
 
-all : $(NAME)
+all : $(LIBFT) $(NAME)
 
-$(NAME) : $(OBJS) Makefile
+-include $(DEPS)
+
+%.o : %.c $(MAKEFILE)
+	$(CC) $(FLAGS) -c $< -o ${<:.c=.o}
+
+$(NAME) : $(OBJS)
+	$(CC) $(FLAGS) $(LIBFT) $(OBJS) -o $(NAME)
+
+$(LIBFT) :
+	make bonus -C $(LIBFT_DIR)
 
 clean :
+	make clean -C $(LIBFT_DIR)
 	$(REMOVE) $(OBJS) $(DEPS) $(OBJS_BONUS)
 
 fclean : clean
+	make fclean -C $(LIBFT_DIR)
 	$(REMOVE) $(NAME) do_bonus
+
+test : $(LIBFT) $(NAME)
 
 do_bonus : bonus
 
 bonus : $(OBJS_BONUS)
-	$(cc) $(FLAGS) -c $< -MMD -MP -o {$<:.c=.o}
+	$(CC) $(FLAGS) -c $< -MMD -o ${<:.c=.o}
 	touch do_bonus
 
 .PHONY: all bonus clean fclean re
