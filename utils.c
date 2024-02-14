@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:23:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 19:27:13 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:32:38 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	free_exit(t_list *stackA, t_list *stackB, int exit_val)
 {
 	if (exit_val == 1)
 		write(2, "Error\n", 6);
-	/*else
-		write(1, "Success!\n", 9);*/
 	if (stackA)
 		ft_clear(&stackA);
 	if (stackB)
