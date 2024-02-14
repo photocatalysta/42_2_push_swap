@@ -31,7 +31,7 @@ At the beginning:
 * The stack a contains a random amount of negative and/or positive numbers which cannot be duplicated.
 * The stack b is empty.
 
-The goal is to sort in ascending order numbers into stack a. 
+The goal is to sort in ascending order numbers into stack a.
 
 To do so you have the following operations at your disposal:
 
@@ -39,7 +39,7 @@ To do so you have the following operations at your disposal:
   * `sa` (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
   * `sb` (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
   * `ss` : sa and sb at the same time.
-  
+
 * Push stack: Move the top element of Stack A to the top of Stack B or viceversa.
   * `pb` (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
   * `pa` (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
@@ -70,7 +70,7 @@ They are either ordered, or they are not. Both a swap or a rotation of the eleme
 
 Possible cases:
 
-* Already good - 1 case: 
+* Already good - 1 case:
     * "1 2 3";
 * One move - 3 Cases:
     * "2 1 3" -> Swap top;
@@ -82,7 +82,7 @@ Possible cases:
 
 ### 4 Elements - 24 Cases
 
-* Already good - 1 case: 
+* Already good - 1 case:
     * "1 2 3 4";
 * One move - 3 Cases:
     * "2 1 3 4" -> Swap top;
@@ -117,7 +117,7 @@ Possible cases:
 Moving from Stack A to B and back requires that at least two elements are moved back and forth and that at least an operation is made.
 Moving two elements may account as a Rotation Up in Stack A as well, But at least 5 moves should be considered
 
-> Stupid moves: 
+> Stupid moves:
 >
 > * Double swap
 > * Rotate Up + Rotate Down
@@ -130,7 +130,7 @@ Nice question! But we know there are 120 combinations possible! This is enough t
 
 Of the many different existent algorithms, many are based on either swapping elements based on the array position. For this excercise we could consider a simple bubble sort, although it would be a rather slow approach. We could as well do a merge sort and use the different stacks to lower the amount of calculations, however it would be limited to only two separation.
 
-An algorithm that has so far found success is the radix sort. This algorithm tends to organise the stack starting from the units digit and moving towards the biggest digit. Approaching this from a computer perspective, the values can be simplified to their binary (base 2) representation and use bitwise logic to sort every digit in the two bins and reorganise it accordingly. The main drawback of this approach is that it will fail if it is used for negative values. 
+An algorithm that has so far found success is the radix sort. This algorithm tends to organise the stack starting from the units digit and moving towards the biggest digit. Approaching this from a computer perspective, the values can be simplified to their binary (base 2) representation and use bitwise logic to sort every digit in the two bins and reorganise it accordingly. The main drawback of this approach is that it will fail if it is used for negative values.
 
 For the success of this exercise, the most important part is the final amount of actions achieved. The radix sort is fast enough that it will always achieve a good enough result. You can definitely do better! However, setting up a full data science project to always achieve the lowest amount of instructions may not be the wisest! Timeouts... Remember?
 
@@ -146,7 +146,7 @@ We will only move A elements with:
 * R -> Rotation Up
 * S -> Switch to B
 
-1st iteration: 
+1st iteration:
 
 |  A  |  B  |    |  A  |  B  |    |  A  |  B  |
 | :-: | :-: | -- | :-: | :-: | -- | :-: | :-: |
@@ -162,7 +162,7 @@ We will only move A elements with:
 
 Given N elements, this would require initially N moves + N/2 for the step back
 
-2nd iteration - Will be based on the second last digit: 
+2nd iteration - Will be based on the second last digit:
 
 |  A  |  B  |    |  A  |  B  |    |  A  |  B  |
 | :-: | :-: | -- | :-: | :-: | -- | :-: | :-: |
@@ -178,7 +178,7 @@ Given N elements, this would require initially N moves + N/2 for the step back
 
 Although it may seem the use of 1 is advantageous, that would require to rotate the pile in order not to order the whole pile in descending order. That would be N moves for the second part as well.
 
-3rd iteration - Will be based on the third last digit: 
+3rd iteration - Will be based on the third last digit:
 
 |  A  |  B  |    |  A  |  B  |    |  A  |  B  |
 | :-: | :-: | -- | :-: | :-: | -- | :-: | :-: |
@@ -198,8 +198,8 @@ Although it may seem the use of 1 is advantageous, that would require to rotate 
 From this we learnt that:
 * Rotation is fundamental to ensure the order.
 * We could Add A to B in the second iteration to save 2 moves and split from B to A the 1** in the 3rd
-    * This is convinient only if N % $2^{move}$ is < $2^{move - 1}$ and N % $2^{move}$ 
-    
+    * This is convinient only if N % $2^{move}$ is < $2^{move - 1}$ and N % $2^{move}$
+
 ## Check the actual case for the previous situation
 
 Moving always ones to B leads to a reverted list:

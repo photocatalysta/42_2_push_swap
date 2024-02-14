@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:13:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 15:16:41 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 16:55:12 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,17 @@ void	ft_push_swap(t_list *stackA, t_list *stackB)
 	l_stack = ft_lstsize(stackA);
 	if (l_stack == 1 || is_ordered(stackA))
 		return(free_exit(stackA, stackB, EXIT_SUCCESS));
-	test_stack(stackA, stackB);
-	/*
-	if (l_stack < 6)
-		fast_sort(stackA, stackB);
-	else
-		fast_sort(stackA, stackB);
-
-	while (stackA)
+	//test_stack(stackA, stackB);
+	if (l_stack == 2)
 	{
-		stackA->pos = get_arr_pos(arr, , stackA->content);
-		stackA = stackA->next;
-	}*/
+		write(1, "sa\n", 3);
+		ft_swap(&stackA);
+	}
+	if (l_stack == 3)
+		ft_fast_sort(stackA);
+	/*else
+		ft_push_sort(stackA, stackB);*/
+	free_exit(stackA, stackB, 0);
 }
 
 int main(int argc, char **argv)
