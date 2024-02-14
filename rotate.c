@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:07:44 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 14:50:27 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 15:23:42 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void ft_rotate_rev_both(t_list **stackA, t_list **stackB)
 	write(1, "rrr\n", 4);
 }
 
-//Should I do this on a copy or on the actual array?
-
 void ft_rotate(t_list **stack)
 {
 	t_list  *temp;
 
+	if (!stack || !(*stack) || (*stack)->next == NULL)
+		return ;
 	temp = ft_lstnew((*stack)->content);
 	temp->next = NULL;
 	ft_lstadd_back(stack, temp);
@@ -45,6 +45,8 @@ void ft_rotate_rev(t_list **stack)
 	t_list  *temp;
 	t_list  *temp2;
 
+	if (!stack || !(*stack) || (*stack)->next == NULL)
+		return ;
 	temp = *stack;
 	while (temp->next->next)
 		temp = temp->next;
