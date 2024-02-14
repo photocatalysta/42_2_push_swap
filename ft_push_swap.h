@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:16:31 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 12:36:49 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 15:03:57 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ t_list	*ft_init_list(int argc, char **argv, t_list *stack);
 t_list	*ft_init_args(t_list *stack, char **argv);
 t_list	*ft_delone(t_list *stack);
 int		ft_chknum(char *str);
+void	ft_push_swap(t_list *stackA, t_list *stackB);
 
-void	rotate(t_list *lst);
-void	rotate_rev(t_list *stack);
-void	rotate_both(t_list *a, t_list *b);
-void	rotate_rev_both(t_list *a, t_list *b);
-void	push_a(t_list *a, t_list *b);
-void	push_b(t_list *a, t_list *b);
+void	ft_rotate(t_list **lst);
+void	ft_rotate_rev(t_list **stack);
+void	ft_rotate_both(t_list **stackA, t_list **stackB);
+void	ft_rotate_rev_both(t_list **stackA, t_list **stackB);
+void	ft_push(t_list **stackA, t_list **stackB);
+void	ft_swap(t_list **stack);
 
 void	ft_sort_int(int	**arr, int size);
 int		get_arr_pos(int *arr, int size, int val);
@@ -43,6 +44,9 @@ int 	is_ordered(t_list *stack);
 void	free_exit(t_list *stackA, t_list *stackB, int exit_val);
 
 // Testing functions
-void	print_list(t_list *list);
+void	print_list(t_list *list, int c);
+void	test_rotate(t_list **stack);
+void	test_swap(t_list **stack);
+void	test_stack(t_list *stackA, t_list *stackB);
 
 #endif
