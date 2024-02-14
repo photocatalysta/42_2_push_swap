@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:13:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 16:55:12 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:12:27 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_push_swap(t_list *stackA, t_list *stackB)
 		ft_swap(&stackA);
 	}
 	if (l_stack == 3)
-		ft_fast_sort(stackA);
+		ft_fast_sort(&stackA);
 	/*else
 		ft_push_sort(stackA, stackB);*/
 	free_exit(stackA, stackB, 0);

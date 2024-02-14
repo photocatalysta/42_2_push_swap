@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:16:31 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 16:47:41 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:17:44 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_rotate_both(t_list **stackA, t_list **stackB);
 void	ft_rotate_rev_both(t_list **stackA, t_list **stackB);
 void	ft_push(t_list **stackA, t_list **stackB);
 void	ft_swap(t_list **stack);
-void	ft_fast_sort(t_list *stackA);
+void	ft_fast_sort(t_list **stackA);
 
 void	ft_sort_int(int	**arr, int size);
 int		get_arr_pos(int *arr, int size, int val);

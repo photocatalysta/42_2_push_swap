@@ -6,13 +6,13 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:44:25 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 17:01:54 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:21:37 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int	ft_posmin(t_list *stackA)
+int	ft_posmax(t_list *stackA)
 {
 	int	i;
 	int	j;
@@ -25,7 +25,7 @@ int	ft_posmin(t_list *stackA)
 	val = stackA->content;
 	while (stackA)
 	{
-		if (stackA->content < val)
+		if (stackA->content > val)
 		{
 			val = stackA->content;
 			j = i;
@@ -36,49 +36,30 @@ int	ft_posmin(t_list *stackA)
 	return (j);
 }
 
-void	ft_swap_pos_1(t_list *stackA)
+void	ft_fast_sort(t_list **stackA)
 {
-	write(1, "ra\n", 3);
-	ft_rotate(&stackA);
-	write(1, "sa\n", 3);
-	ft_swap(&stackA);
-}
-
-void	ft_swap_pos_2(t_list *stackA)
-{
-	write(1, "rra\n", 4);
-	ft_rotate_rev(&stackA);
-	if (stackA->content < stackA->next->next->content)// (pos 1 > pos 3)
-	{
-		write(1, "sa\n", 4);
-		ft_swap(&stackA);
-	}
-}
-
-void	ft_swap_pos_3(t_list *stackA)
-{
-	if (stackA->content > stackA->next->content)// (pos 1 > pos 2)
-	{
-		write(1, "sa\n", 4);
-		ft_swap(&stackA);
-	}
-	write(1, "ra\n", 3);
-	ft_rotate(&stackA);
-}
-
-void	ft_fast_sort(t_list *stackA)
-{
-	int	pos;
+	int		pos;
+	t_list	*last;
 
 	if (!stackA)
-		free_exit(stackA, NULL, 1); // Shouldn't happen
-	pos = ft_posmin(stackA);
-	if (pos == -1)
-		free_exit(stackA, NULL, 1);
-	if (pos == 0)
-		ft_swap_pos_1(stackA);
-	else if (pos == 1)
-		ft_swap_pos_2(stackA);
-	else if (pos == 2)
-		ft_swap_pos_3(stackA);
+		free_exit(*stackA, NULL, 1); // Shouldn't happen
+	pos = ft_posmax(*stackA);
+	last = ft_lstlast(*stackA);
+	if (((*stackA)->content > (*stackA)->next->content)
+		&& ((*stackA)->content > last->content))
+	{
+		write(1, "ra\n", 3);
+		ft_rotate(stackA);
+	}
+	else if (((*stackA)->content < (*stackA)->next->content)
+		&& ((*stackA)->next->content > last->content))
+	{
+		write(1, "rra\n", 4);
+		ft_rotate_rev(stackA);
+	}
+	if ((*stackA)->content > (*stackA)->next->content)
+	{
+		write(1, "sa\n", 3);
+		ft_swap(stackA);
+	}
 }
