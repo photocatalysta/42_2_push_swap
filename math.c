@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 22:23:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 16:32:02 by jsala            ###   ########.fr       */
+/*   Created: 2024/02/15 16:30:15 by jsala             #+#    #+#             */
+/*   Updated: 2024/02/15 17:40:25 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
-
-void	ft_clear(t_list **lst)
+int ft_abs_sum(int a, int b)
 {
-	t_list	*temp;
-
-	while (*lst)
-	{
-		temp = *lst;
-		*lst = (*lst)->next;
-		free(temp);
-	}
+	if (a < 0)
+		a = -a;
+	if (b < 0)
+		b = -b;
+	return (a + b);
 }
 
-void	free_exit(t_list *stackA, t_list *stackB, int exit_val)
+int ft_abs_min(int val, int val_rev)
 {
-	if (exit_val == 1)
-		write(2, "Error\n", 6);
-	if (stackA)
-		ft_clear(&stackA);
-	if (stackB)
-		ft_clear(&stackB);
-	exit(exit_val);
+	if (val < -val_rev)
+		return (val);
+	else
+		return (val_rev);
+}
+
+int ft_max(int i, int j)
+{
+	if (i > j)
+		return (i);
+	return (j);
+}
+
+int	ft_min(int i, int j)
+{
+	if (i < j)
+		return (i);
+	return (j);
 }

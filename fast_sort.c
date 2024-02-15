@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   fast_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:44:25 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 19:21:37 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/15 09:10:48 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_fast_sort(t_list **stackA)
 	t_list	*last;
 
 	if (!stackA)
-		free_exit(*stackA, NULL, 1); // Shouldn't happen
+		free_exit(*stackA, NULL, 1);
 	pos = ft_posmax(*stackA);
 	last = ft_lstlast(*stackA);
 	if (((*stackA)->content > (*stackA)->next->content)

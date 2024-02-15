@@ -1,4 +1,4 @@
-SRCS = rotate.c swap.c push.c utils.c main.c test_utils.c fast_sort.c
+SRCS = rotate.c swap.c push.c utils.c utils2.c test_utils.c fast_sort.c math.c moves.c moves_utils.c  main.c
 SRCS_BONUS = ft_checker.c
 
 HEADERS = ft_push_swap.h
