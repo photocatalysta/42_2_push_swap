@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:41:29 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 17:39:24 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/15 18:48:34 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB)
 {
+	int	abs_cost_a;
+	int	abs_cost_b;
+	int	cost; // Should be calculated tin the case no shared move is done
 	/*
 		Calculate the actual best set of moves:
 		- If costA and costB are both positive -> return MAX
@@ -23,31 +26,21 @@ int ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB)
 		Double check for cases were costs are 0;
 	*/
 	if (*costA > 0 && *costB > 0)
-		return (ft_max(*costA, *costB));
+		return (ft_max(*costA, *costB)); // Double check if it is done via absolute values or not...
 	else if (*costA < 0 && *costB < 0)
-		return (ft_min(*costA, *costB));
+		return (ft_min(*costA, *costB)); // Double check if it is done via absolute values or not...
 	else
 		return (ft_abs_sum(*costA, *costB));
 	/* Calc rev stackA
-	if (*costA < 0)
-	{
-		if (l_stackA + *costA < *costB - *costA)
-		{
-			*costA = l_stackA + *costA; // Change sign and get the opposite value
-			return (*costA);
-		}
-		else if (l_stackB - *costB < *costB - *costA)
-		{
-			*costB = *costB - l_stackB; // Change sign and get the opposite value
-			return (*costB);
-		}
-	}
-	else if (*costB < 0)
-	{
-		if (l_stackB + *costB < *costA - *costB)
-			*costB = l_stackB + *costB; // Change sign and get the opposite value
-		else if (l_stackA - *costA < *costA - *costB)
-			*costA = *costA - l_stackA; // Change sign and get the opposite value
+	abs_cost_a = ft_abs(*costA);
+	abs_cost_b = ft_abs(*costB);
+	cost = ft_abs_sum(*costA, *costB);
+	if (l_stackA - abs_cost_a < cost)
+		*costA = (l_stackA - abs_cost_a) * (cost_a / abs_cost_a);
+	else if (l_stackB - abs_cost_b < cost)
+		*costB = (l_stackB - abs_cost_b) * (cost_b / abs_cost_b);
+	cost = ft_abs(*costA + *costB); // Double check if it is done via absolute values or not...
+	reutrn (cost);
 	}*/
 }
 
