@@ -6,15 +6,59 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 09:11:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 17:39:26 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/15 18:31:07 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-void ft_move(t_list *stackA, t_list *stackB, int *mov_a, int *mov_b)
+void ft_move(t_list **stackA, t_list **stackB, int *mov_a, int *mov_b)
 {
+	while (mov_a != 0 && mov_b !=0)
+	{
+		if ((*mov_a) * (*mov_b) > 0)
+		{
+			if (*mov_a < 0)
+			{
+				ft_rotate_rev_both(stackA, stackB); // Move the move change to the functions themselves to save lines and space
+				*mov_a++;
+				*mov_b++;
+			}
+			else
+			{
+				ft_rotate_both(stackA, stackB);
+				*mov_a--;
+				*mov_b--;
+			}
+		}
+		if (*mov_a != 0)
+			ft_move_stack(stackA, mov_a, 'a');
+		if (*mov_b != 0)
+			ft_move_stack(stackB, mov_b, 'b');
+	}
+	write(1, "pb\n", 3);
+	ft_push(stackA, stackB);
 
+}
+
+void	ft_move_stack(t_list **stack, int *mov, char c)
+{
+	if (*mov < 0)
+	{
+		write(1, "rr", 2);
+		write(1, &c, 1);
+		write(1, "\n", 1);
+		ft_rotate_rev(stack);
+		*mov++;
+	}
+	else if (*mov > 0)
+	{
+		write(1, "r", 2);
+		write(1, &c, 1);
+		write(1, "\n", 1);
+		ft_rotate(stack);
+		*mov--;
+	}
 }
 
 /*
@@ -24,7 +68,7 @@ Goes through all the different numbers starting from the top of the stackA
 - If any position gets a lower number of moves, substitutes the instructions
 Once it is obtained the correct value to be pushed, run the commands
 */
-int	*ft_get_moves(t_list *stackA, t_list *stackB, int *mov_a, int *mov_b)
+int	*ft_get_moves_A(t_list *stackA, t_list *stackB, int *mov_a, int *mov_b)
 {
 	/*Get the position that can be moved from A to B in the smallest amount of moves*/
 	int	cost;
@@ -58,7 +102,7 @@ void	ft_stack_sort(t_list **stackA, t_list **stackB)
 	// First part, push to B in a ordered way
 	while (!is_ordered(*stackA) || ft_lstsize(*stackA) > 3)
 	{
-		ft_get_moves(*stackA, *stackB, &mov_a, &mov_b);
+		ft_get_moves_A(*stackA, *stackB, &mov_a, &mov_b);
 		ft_move(*stackA, *stackB, &mov_a, &mov_b);
 	}
 	if (!is_ordered(*stackA))
