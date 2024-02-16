@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 09:51:27 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 14:08:34 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:05:38 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_push_a(t_list **stackA, t_list **stackB, int digit)
 			ft_rotate(stackA);
 			continue ;
 		}
-		ft_push(stackA, stackB, 'a');
+		ft_push(stackA, stackB, 'b');
 		if (((*stackB)->position / ft_pow(3, digit)) % 3 == 2)
 		{
 			if (ft_lstsize(*stackB) > 1)
@@ -74,7 +74,7 @@ void	ft_push_b(t_list **stackA, t_list **stackB, int digit)
 	l_stackB = ft_lstsize(*stackB);
 	while (++i < l_stackB)
 	{
-		ft_push(stackB, stackA, 'b');
+		ft_push(stackB, stackA, 'a');
 		if (((*stackA)->position / ft_pow(3, digit)) % 3 == 2)
 		{
 			write(1, "ra\n", 3);
@@ -89,7 +89,7 @@ void	ft_stack_radixsort(t_list **stackA, t_list **stackB)
 	int	i;
 
 	digit = ft_max_pow_3(*stackA);
-	printf("Digit: %i", digit);
+//	printf("Digit: %i", digit);
 	i = 0;
 	while (i < digit)
 	{
@@ -97,6 +97,6 @@ void	ft_stack_radixsort(t_list **stackA, t_list **stackB)
 		ft_push_b(stackA, stackB, i);
 		i++;
 	}
-	print_list(*stackA, 10);
-	print_list(*stackB, 10);
+//	print_list(*stackA, 10);
+//	print_list(*stackB, 10);
 }

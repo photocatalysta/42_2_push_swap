@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:07:44 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 10:37:35 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:12:44 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void ft_rotate(t_list **stack)
 	ft_lstadd_back(stack, temp);
 	temp = (*stack)->next;
 	*stack = temp;
+	free(temp);
 }
 
 void ft_rotate_rev(t_list **stack)
