@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:41:29 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 18:48:34 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 09:31:08 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB)
 {
-	int	abs_cost_a;
-	int	abs_cost_b;
-	int	cost; // Should be calculated tin the case no shared move is done
+	(void) l_stackA;
+	(void) l_stackB;
+	//int	abs_cost_a;
+	//int	abs_cost_b;
+	//int	cost; // Should be calculated in the case no shared move is done
 	/*
 		Calculate the actual best set of moves:
 		- If costA and costB are both positive -> return MAX
@@ -74,21 +76,19 @@ int	ft_cost_B(t_list *stackB, int val)
 		return (pos - len_b); // Do some debugging about the actual values to not get fooled by the 0s and 1s
 }
 
-int	ft_calc_cost(t_list *stackA, t_list *stackB, int *costA, int *costB)
+int	ft_calc_abs_cost(t_list *stackA, t_list *stackB, int *costA, int *costB)
 {
-	int	costA;
 	int	val;
-	int	costB;
 	int cost;
 
 //	Double check the actual value of new_pos... does it start from 0 or 1? Cost A
-	costA = ft_abs_min(costA, costA - ft_lstsize(stackA));
+	*costA = ft_abs_min(*costA, *costA - ft_lstsize(stackA));
 	if (!stackB)
-		return (costA);
-	while (--costA >= 0)
+		return (*costA);
+	while (--costA >= 0) // Creful about this
 		stackA = stackA->next;
 	val = stackA->content;
-	costB = ft_cost_B(stackB, val);
-	cost = ft_get_best_cost(ft_lstsize(stackA), ft_lstsize(stackB), &costA, &costB);
+	*costB = ft_cost_B(stackB, val);
+	cost = ft_get_best_cost(ft_lstsize(stackA), ft_lstsize(stackB), costA, costB);
 	return (cost);
 }

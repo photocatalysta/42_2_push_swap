@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:16:31 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 17:39:42 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 09:33:53 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,23 @@ int		ft_get_move(t_list **stackA, t_list **stackB, int *pos, int *rev);
 void	ft_stack_sort(t_list **stackA, t_list **stackB);
 int		ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB);
 int		ft_cost_B(t_list *stackB, int val);
-int		ft_calc_cost(t_list *stackA, t_list *stackB, int *costA, int *costB);
+int		ft_calc_abs_cost(t_list *stackA, t_list *stackB, int *costA, int *costB);
 void	ft_sort_int(int	**arr, int size);
 int		get_arr_pos(int *arr, int size, int val);
 
+void	ft_move(t_list **stackA, t_list **stackB, int *mov_a, int *mov_b);
+void	ft_move_stack(t_list **stack, int *mov, char c);
+
 int		ft_lstval(t_list *stack, int val);
 int		is_ordered(t_list *stack);
-int		ft_min(int i, int j);
+
+// Math
+int		ft_abs_sum(int a, int b);
 int		ft_abs_min(int val, int val_rev);
 int		ft_max(int i, int j);
+int		ft_min(int i, int j);
 
+// Exit functions
 void	free_exit(t_list *stackA, t_list *stackB, int exit_val);
 
 // Testing functions

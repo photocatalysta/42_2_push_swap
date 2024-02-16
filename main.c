@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:13:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 15:04:32 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 09:12:44 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	ft_push_swap(t_list *stackA, t_list *stackB)
 	l_stack = ft_lstsize(stackA);
 	if (l_stack == 1 || is_ordered(stackA))
 		return(free_exit(stackA, stackB, EXIT_SUCCESS));
-	//test_stack(stackA, stackB);
 	if (l_stack == 2)
 	{
 		write(1, "sa\n", 3);
