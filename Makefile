@@ -40,7 +40,8 @@ fclean : clean
 	make fclean -C $(LIBFT_DIR)
 	$(REMOVE) $(NAME) do_bonus
 
-test : $(LIBFT) $(NAME)
+test : $(LIBFT) $(OBJS)
+	$(CC) -g $(FLAGS) $(LIBFT) $(OBJS) -o $(NAME)
 
 do_bonus : bonus
 
