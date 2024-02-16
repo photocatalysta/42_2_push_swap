@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:13:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 15:11:49 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:34:57 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ t_list	*ft_init_args(t_list *stack, char **argv, int **pos)
 	{
 		temp_val = ft_atol(argv[i]);
 		if (temp_val < INT_MIN || temp_val > INT_MAX)
-			free_exit(stack, NULL, 1);
+			free_exit(&stack, NULL, 1);
 		val = (int) temp_val;
 		temp = ft_lstnew(val, 0);
 		if (!temp)
-			free_exit(stack, NULL, 1);
+			free_exit(&stack, NULL, 1);
 		if (ft_lstval(stack, val))
-			free_exit(stack, NULL, 1);
+			free_exit(&stack, NULL, 1);
 		ft_lstadd_back(&stack, temp); // Fix list to check for nulls
 		(*pos)[i - 1] = val;
 	}
@@ -65,31 +65,33 @@ t_list	*ft_init_list(int argc, char **argv, t_list *stack, int **pos)
 	while (++i < argc)
 	{
 		if (argv[i][0] == '\0' || !ft_chknum(argv[i]))
-			free_exit(stack, NULL, 1);
+			free_exit(&stack, NULL, 1);
 	}
 	stack = ft_init_args(stack, argv, pos);
 	// No res or free check needed, we can exit... // Need to check if arguments passed are wrong too
 	return (stack);
 }
 
-void	ft_push_swap(t_list *stackA, t_list *stackB)
+void	ft_push_swap(t_list **stackA, t_list **stackB)
 {
 	int	l_stack;
 	// do I need a temp or it is okay since the only modifiable content is
 	// waht is internal to the array?
 
-	l_stack = ft_lstsize(stackA);
-	if (l_stack == 1 || is_ordered(stackA))
+	l_stack = ft_lstsize(*stackA);
+	if (l_stack == 1 || is_ordered(*stackA))
 		return(free_exit(stackA, stackB, EXIT_SUCCESS));
 	if (l_stack == 2)
 	{
 		write(1, "sa\n", 3);
-		ft_swap(&stackA);
+		ft_swap(stackA);
 	}
 	else if (l_stack == 3)
-		ft_fast_sort(&stackA);
+		ft_fast_sort_3(stackA);
+	else if (l_stack < 6)
+		ft_fast_sort(stackA, stackB);
 	else
-		ft_stack_radixsort(&stackA, &stackB);
+		ft_stack_radixsort(stackA, stackB);
 }
 
 int main(int argc, char **argv)
@@ -110,7 +112,8 @@ int main(int argc, char **argv)
 	free(arr);
 	// init stackB here for convenience;
 	stackB = NULL;
-	ft_push_swap(stackA, stackB);
-	free_exit(stackA, stackB, 0);
+//	test_stack(&stackA, &stackB);
+	ft_push_swap(&stackA, &stackB);
+	free_exit(&stackA, &stackB, 0);
 	return (0);
 }

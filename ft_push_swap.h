@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:16:31 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 13:23:21 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 18:39:55 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*ft_init_args(t_list *stack, char **argv, int **pos);
 t_list	*ft_init_list(int argc, char **argv, t_list *stack, int **pos);
 t_list	*ft_delone(t_list *stack);
 int		ft_chknum(char *str);
-void	ft_push_swap(t_list *stackA, t_list *stackB);
+void	ft_push_swap(t_list **stackA, t_list **stackB);
 
 // Functions to recreate the moves of the list
 void	ft_rotate(t_list **lst);
@@ -39,7 +39,8 @@ void	ft_push(t_list **stackA, t_list **stackB, char c);
 void	ft_swap(t_list **stack);
 
 // Sorting functions
-void	ft_fast_sort(t_list **stackA);
+void	ft_fast_sort(t_list **stackA, t_list **stackB);
+void	ft_fast_sort_3(t_list **stackA);
 //void	ft_stack_sort(t_list **stackA, t_list **stackB); // Used for the Turk algorithm
 void	ft_stack_radixsort(t_list **stackA, t_list **stackB);
 int		ft_max_pow_3(t_list *stackA);
@@ -63,14 +64,17 @@ int		ft_max(int i, int j);
 int		ft_min(int i, int j);
 int		ft_pow(int n, int pow);
 
+int		ft_lstmin(t_list *stack);
+int		ft_lstmax(t_list *stack);
+
 // Exit functions
-void	free_exit(t_list *stackA, t_list *stackB, int exit_val);
+void	free_exit(t_list **stackA, t_list **stackB, int exit_val);
 
 // Testing functions
 void	print_list(t_list *list, int c);
 void	test_rotate(t_list **stack);
 void	test_swap(t_list **stack);
-void	test_stack(t_list *stackA, t_list *stackB);
+void	test_stack(t_list **stackA, t_list **stackB);
 void	ft_print_int(int *arr, int count);
 
 #endif

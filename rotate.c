@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:07:44 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 15:12:44 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:33:04 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,15 @@ void ft_rotate_rev_both(t_list **stackA, t_list **stackB)
 
 void ft_rotate(t_list **stack)
 {
-	t_list  *temp;
+	t_list	*temp;
 
 	if (!stack || !(*stack) || (*stack)->next == NULL)
 		return ;
 	temp = ft_lstnew((*stack)->content, (*stack)->position);
-	temp->next = NULL;
 	ft_lstadd_back(stack, temp);
 	temp = (*stack)->next;
+	free(*stack);
 	*stack = temp;
-	free(temp);
 }
 
 void ft_rotate_rev(t_list **stack)

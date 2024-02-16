@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:22:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 12:35:29 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:46:45 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,18 @@ void	test_swap(t_list **stack)
 	printf("Start rotation moves;\n");
 	ft_swap(stack);
 	print_list(*stack, 10);
+	printf("Pointer of stack: %p; stack->next: %p\n", *stack, (*stack)->next);
 	ft_swap(stack);
 	print_list(*stack, 10);
+	printf("Pointer of stack: %p; stack->next: %p\n", *stack, (*stack)->next);
 	printf("Double ft_swap done;\n\n");
 	ft_swap(stack);
 	print_list(*stack, 10);
-	ft_rotate(stack);
+	printf("Pointer of stack: %p; stack->next: %p\n", *stack, (*stack)->next);
+/*	ft_rotate(stack);
 	print_list(*stack, 10);
 	ft_swap(stack);
-	print_list(*stack, 10);
+	print_list(*stack, 10);*/
 	printf("Double ft_swap with rotation done;\n\n");
 	test_success("  Swap  ");
 }
@@ -89,15 +92,17 @@ void	test_push(t_list **stackA, t_list **stackB)
 	ft_push(stackB, stackA);*/
 }
 
-void	test_stack(t_list *stackA, t_list *stackB)
+void	test_stack(t_list **stackA, t_list **stackB)
 {
-	/*test_rotate(&stackA);
-	print_list(stackA, 10);*/
-//	write(1, "\nBella\n", 6);
-/*	test_swap(&stackA);
-	print_list(stackA, 10);*/
+/*	test_rotate(&stackA);
+	print_list(stackA, 10);
+	write(1, "\nBella\n", 6);*/
+	test_swap(stackA);
+	print_list(*stackA, 10);
+/*	test_swap(&stackB);
+	print_list(stackB, 10);
 	test_push(&stackA, &stackB);
 	test_push(&stackA, &stackB);
-	test_success("  Push  ");
+	test_success("  Push  ");*/
 	(void) stackB;
 }
