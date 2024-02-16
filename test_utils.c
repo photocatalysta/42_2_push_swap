@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:22:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/14 16:01:54 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:35:29 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,21 @@ void	test_success(char *str)
 	printf(" ===================================================== \n\n");
 }
 
+void	ft_print_int(int *arr, int count)
+{
+	int i = -1;
+	while (++i < count)
+	{
+		printf("%i\n", arr[i]);
+	}
+}
+
 void	print_list(t_list *list, int c)
 {
 	printf("\nBeginning to print the list\n");
 	while (list && c > 0)
 	{
-		printf("Val list: %i; Val of c: %i\n", list->content, c);
+		printf("Val list: %i; Val of pos: %i; Val of c: %i\n", list->content, list->position, c);
 		list = list->next;
 		c--;
 	}
@@ -69,11 +78,11 @@ void	test_swap(t_list **stack)
 
 void	test_push(t_list **stackA, t_list **stackB)
 {
-	ft_push(stackA, stackB);
+	ft_push(stackA, stackB, 'a');
 	print_list(*stackA, 10);
 	print_list(*stackB, 10);
 	write(1, "Ciao\n", 5);
-	ft_push(stackB, stackA);
+	ft_push(stackB, stackA, 'b');
 	print_list(*stackA, 10);
 	print_list(*stackB, 10);
 	/*printf("This should fail:\n");

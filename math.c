@@ -6,9 +6,19 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:30:15 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 17:40:25 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 13:47:14 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	ft_pow(int n, int pow)
+{
+	int	val;
+
+	val = 1;
+	while (pow-- > 0)
+		val *= n;
+	return (val);
+}
 
 int ft_abs_sum(int a, int b)
 {

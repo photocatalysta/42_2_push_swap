@@ -6,11 +6,35 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:23:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/15 15:54:57 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/16 11:18:08 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
+#include <stdio.h>
+
+t_list	*ft_init_pos(t_list *stackA, int *arr, int argc)
+{
+	int		i;
+	int		val;
+	t_list	*temp;
+
+	i = 0;
+	temp = stackA;
+	while (temp)
+	{
+		val = temp->content;
+		while (i < argc && val != arr[i])
+			i++;
+		if (val == arr[i])
+		{
+			temp->position = i;
+			i = 0;
+		}
+		temp = temp->next;
+	}
+	return (stackA);
+}
 
 int	ft_chknum(char *str)
 {

@@ -5,118 +5,98 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 09:11:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 09:40:59 by jsala            ###   ########.fr       */
+/*   Created: 2024/02/16 09:51:27 by jsala             #+#    #+#             */
+/*   Updated: 2024/02/16 14:08:34 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 #include <stdio.h>
 
-void	ft_move(t_list **stackA, t_list **stackB, int *mov_a, int *mov_b)
+int	ft_max_pow_3(t_list *stackA)
 {
-	while (*mov_a != 0 && *mov_b !=0)
+	t_list	*temp;
+	int		n_max;
+	int		pos_max;
+	int		pos;
+
+	pos_max = 0;
+	n_max = 0;
+	temp = stackA;
+	while (temp)
 	{
-		if ((*mov_a) * (*mov_b) > 0)
+		pos = temp->position;
+		if (pos > pos_max)
+			pos_max = pos;
+		temp = temp->next;
+	}
+	while (pos_max != 0)
+	{
+		n_max++;
+		pos_max /= 3;
+	}
+	return (n_max);
+}
+
+void	ft_push_a(t_list **stackA, t_list **stackB, int digit)
+{
+	int	l_stackA;
+	int	i;
+
+	i = -1;
+	l_stackA = ft_lstsize(*stackA);
+	while (++i < l_stackA)
+	{
+		if (((*stackA)->position / ft_pow(3, digit)) % 3 == 1)
 		{
-			if (*mov_a < 0)
+			write(1, "ra\n", 3);
+			ft_rotate(stackA);
+			continue ;
+		}
+		ft_push(stackA, stackB, 'a');
+		if (((*stackB)->position / ft_pow(3, digit)) % 3 == 2)
+		{
+			if (ft_lstsize(*stackB) > 1)
 			{
-				ft_rotate_rev_both(stackA, stackB); // Move the move change to the functions themselves to save lines and space
-				(*mov_a)++;
-				(*mov_b)++;
-			}
-			else
-			{
-				ft_rotate_both(stackA, stackB);
-				(*mov_a)--;
-				(*mov_b)--;
+				write(1, "rb\n", 3);
+				ft_rotate(stackB);
 			}
 		}
-		if (*mov_a != 0)
-			ft_move_stack(stackA, mov_a, 'a');
-		if (*mov_b != 0)
-			ft_move_stack(stackB, mov_b, 'b');
-	}
-	write(1, "pb\n", 3);
-	ft_push(stackA, stackB);
-}
-
-void	ft_move_stack(t_list **stack, int *mov, char c)
-{
-	if (*mov < 0)
-	{
-		write(1, "rr", 2);
-		write(1, &c, 1);
-		write(1, "\n", 1);
-		ft_rotate_rev(stack);
-		(*mov)++;
-	}
-	else if (*mov > 0)
-	{
-		write(1, "r", 2);
-		write(1, &c, 1);
-		write(1, "\n", 1);
-		ft_rotate(stack);
-		(*mov)--;
 	}
 }
 
-/*
-Goes through all the different numbers starting from the top of the stackA
-- Checks the amount of moves needed to properly be stacked in B
-- After the first one is set, checks for a max of moves - 1 positions
-- If any position gets a lower number of moves, substitutes the instructions
-Once it is obtained the correct value to be pushed, run the commands
-*/
-void	ft_get_moves_A(t_list *stackA, t_list *stackB, int *mov_a, int *mov_b)
+void	ft_push_b(t_list **stackA, t_list **stackB, int digit)
 {
-	/*Get the position that can be moved from A to B in the smallest amount of moves*/
-	int	abs_cost;
-	int	abs_lowest_cost;
-	int	temp_mov_a;
-	int temp_mov_b;
+	int	l_stackB;
+	int	i;
 
-	temp_mov_a = 0; // Tracks the current position
-	temp_mov_b = 0;
-	abs_cost = 0; // Checks for the current cost
-	abs_lowest_cost = ft_calc_abs_cost(stackA, stackB, &temp_mov_a, &temp_mov_b); // Saves the cheapest move
-	// Being at a position that is further than abs_lowest_cost doesn't make sense, save calculations
-	while (stackA)
+	i = -1;
+	l_stackB = ft_lstsize(*stackB);
+	while (++i < l_stackB)
 	{
-		abs_cost = ft_calc_abs_cost(stackA, stackB, &temp_mov_a, &temp_mov_b); // Pass temp_mov as a way for it to update here too
-		if (abs_cost == 0)
-			return ;
-		if (abs_cost < abs_lowest_cost)
+		ft_push(stackB, stackA, 'b');
+		if (((*stackA)->position / ft_pow(3, digit)) % 3 == 2)
 		{
-			abs_lowest_cost = abs_cost;
-			*mov_a = temp_mov_a;
-			*mov_b = temp_mov_b;
+			write(1, "ra\n", 3);
+			ft_rotate(stackA);
 		}
-		stackA = stackA->next;
 	}
 }
 
-void	ft_stack_sort(t_list **stackA, t_list **stackB)
+void	ft_stack_radixsort(t_list **stackA, t_list **stackB)
 {
-	int	mov_a;
-	int	mov_b;
+	int digit;
+	int	i;
 
-	// First part, push to B in a ordered way
-	mov_a = 0;
-	mov_b = 0;
-	while (!is_ordered(*stackA) || ft_lstsize(*stackA) > 3)
+	digit = ft_max_pow_3(*stackA);
+	printf("Digit: %i", digit);
+	i = 0;
+	while (i < digit)
 	{
-		ft_get_moves_A(*stackA, *stackB, &mov_a, &mov_b);
-		print_list(*stackA, 10);
-		printf("What is the value for A and B?\nA: %i, B: %i;\n", mov_a, mov_b);
-		ft_move(stackA, stackB, &mov_a, &mov_b);
-		print_list(*stackA, 10);
-		printf("What is the value for A and B?\nA: %i, B: %i;\n", mov_a, mov_b);
+		ft_push_a(stackA, stackB, i);
+		ft_push_b(stackA, stackB, i);
+		i++;
 	}
 	print_list(*stackA, 10);
-	if (!is_ordered(*stackA))
-		ft_fast_sort(stackA);
-	print_list(*stackA, 10);
-	//while (ft_lstsize(*stackB) > 0 && !is_ordered(stackA))
-	//	push_b_to_a();
+	print_list(*stackB, 10);
 }
