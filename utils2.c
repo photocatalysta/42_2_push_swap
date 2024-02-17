@@ -6,21 +6,21 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:23:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 16:20:03 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:58:05 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 #include <stdio.h>
 
-t_list	*ft_init_pos(t_list *stackA, int *arr, int argc)
+t_list	*ft_init_pos(t_list *stack_a, int *arr, int argc)
 {
 	int		i;
 	int		val;
 	t_list	*temp;
 
 	i = 0;
-	temp = stackA;
+	temp = stack_a;
 	while (temp)
 	{
 		val = temp->content;
@@ -33,7 +33,7 @@ t_list	*ft_init_pos(t_list *stackA, int *arr, int argc)
 		}
 		temp = temp->next;
 	}
-	return (stackA);
+	return (stack_a);
 }
 
 int	ft_chknum(char *str)
@@ -70,7 +70,7 @@ int	ft_lstval(t_list *stack, int val)
 	return (0);
 }
 
-int is_ordered(t_list *stack)
+int	is_ordered(t_list *stack)
 {
 	while (stack->next)
 	{

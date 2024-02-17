@@ -6,16 +6,16 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:41:29 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 09:31:08 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:50:23 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 
-int ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB)
+int ft_get_best_cost(int l_stack_a, int l_stack_b, int *costA, int *costB)
 {
-	(void) l_stackA;
-	(void) l_stackB;
+	(void) l_stack_a;
+	(void) l_stack_b;
 	//int	abs_cost_a;
 	//int	abs_cost_b;
 	//int	cost; // Should be calculated in the case no shared move is done
@@ -33,20 +33,20 @@ int ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB)
 		return (ft_min(*costA, *costB)); // Double check if it is done via absolute values or not...
 	else
 		return (ft_abs_sum(*costA, *costB));
-	/* Calc rev stackA
+	/* Calc rev stack_a
 	abs_cost_a = ft_abs(*costA);
 	abs_cost_b = ft_abs(*costB);
 	cost = ft_abs_sum(*costA, *costB);
-	if (l_stackA - abs_cost_a < cost)
-		*costA = (l_stackA - abs_cost_a) * (cost_a / abs_cost_a);
-	else if (l_stackB - abs_cost_b < cost)
-		*costB = (l_stackB - abs_cost_b) * (cost_b / abs_cost_b);
+	if (l_stack_a - abs_cost_a < cost)
+		*costA = (l_stack_a - abs_cost_a) * (cost_a / abs_cost_a);
+	else if (l_stack_b - abs_cost_b < cost)
+		*costB = (l_stack_b - abs_cost_b) * (cost_b / abs_cost_b);
 	cost = ft_abs(*costA + *costB); // Double check if it is done via absolute values or not...
 	reutrn (cost);
 	}*/
 }
 
-// Calculate moves to reach top or end of stackA from pos X
+// Calculate moves to reach top or end of stack_a from pos X
 
 // Calculate moves to move stack B to have the top available for the push
 
@@ -54,41 +54,41 @@ int ft_get_best_cost(int l_stackA, int l_stackB, int *costA, int *costB)
 // Pos A, Moves B, Absolute value of moves...
 // Could be the sum of both or could just be possible to benefit from joint rotations
 
-int	ft_cost_B(t_list *stackB, int val)
+int	ft_cost_B(t_list *stack_b, int val)
 {
 	int	len_b;
 	int	pos;
 
-	if (!stackB)
+	if (!stack_b)
 		return (0);
 	pos = 1;
-	while (stackB->next)
+	while (stack_b->next)
 	{
-		if (stackB->content > val && val < stackB->next->content) // This works going forward and if ordered B
+		if (stack_b->content > val && val < stack_b->next->content) // This works going forward and if ordered B
 			break ;
-		stackB = stackB->next;
+		stack_b = stack_b->next;
 		pos++;
 	}
-	len_b = ft_lstsize(stackB);
+	len_b = ft_lstsize(stack_b);
 	if (len_b - pos > pos)
 		return (pos);
 	else
 		return (pos - len_b); // Do some debugging about the actual values to not get fooled by the 0s and 1s
 }
 
-int	ft_calc_abs_cost(t_list *stackA, t_list *stackB, int *costA, int *costB)
+int	ft_calc_abs_cost(t_list *stack_a, t_list *stack_b, int *costA, int *costB)
 {
 	int	val;
 	int cost;
 
 //	Double check the actual value of new_pos... does it start from 0 or 1? Cost A
-	*costA = ft_abs_min(*costA, *costA - ft_lstsize(stackA));
-	if (!stackB)
+	*costA = ft_abs_min(*costA, *costA - ft_lstsize(stack_a));
+	if (!stack_b)
 		return (*costA);
 	while (--costA >= 0) // Creful about this
-		stackA = stackA->next;
-	val = stackA->content;
-	*costB = ft_cost_B(stackB, val);
-	cost = ft_get_best_cost(ft_lstsize(stackA), ft_lstsize(stackB), costA, costB);
+		stack_a = stack_a->next;
+	val = stack_a->content;
+	*costB = ft_cost_B(stack_b, val);
+	cost = ft_get_best_cost(ft_lstsize(stack_a), ft_lstsize(stack_b), costA, costB);
 	return (cost);
 }

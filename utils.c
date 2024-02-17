@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:23:42 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 18:39:31 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:57:54 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_lstmin(t_list *stack)
 	}
 	return (val_min);
 }
+
 int	ft_lstmax(t_list *stack)
 {
 	int		val_max;
@@ -55,13 +56,13 @@ void	ft_clear(t_list **lst)
 	}
 }
 
-void	free_exit(t_list **stackA, t_list **stackB, int exit_val)
+void	free_exit(t_list **stack_a, t_list **stack_b, int exit_val)
 {
 	if (exit_val == 1)
 		write(2, "Error\n", 6);
-	if (stackA && *stackA)
-		ft_clear(stackA);
-	if (stackB && *stackB)
-		ft_clear(stackB);
+	if (stack_a && *stack_a)
+		ft_clear(stack_a);
+	if (stack_b && *stack_b)
+		ft_clear(stack_b);
 	exit(exit_val);
 }

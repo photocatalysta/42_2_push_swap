@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:30:15 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 13:47:14 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:51:40 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_pow(int n, int pow)
 	return (val);
 }
 
-int ft_abs_sum(int a, int b)
+int	ft_abs_sum(int a, int b)
 {
 	if (a < 0)
 		a = -a;
@@ -29,7 +29,7 @@ int ft_abs_sum(int a, int b)
 	return (a + b);
 }
 
-int ft_abs_min(int val, int val_rev)
+int	ft_abs_min(int val, int val_rev)
 {
 	if (val < -val_rev)
 		return (val);
@@ -37,7 +37,7 @@ int ft_abs_min(int val, int val_rev)
 		return (val_rev);
 }
 
-int ft_max(int i, int j)
+int	ft_max(int i, int j)
 {
 	if (i > j)
 		return (i);

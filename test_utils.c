@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:22:01 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 15:46:45 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:50:23 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,30 @@ void	test_swap(t_list **stack)
 	test_success("  Swap  ");
 }
 
-void	test_push(t_list **stackA, t_list **stackB)
+void	test_push(t_list **stack_a, t_list **stack_b)
 {
-	ft_push(stackA, stackB, 'a');
-	print_list(*stackA, 10);
-	print_list(*stackB, 10);
+	ft_push(stack_a, stack_b, 'a');
+	print_list(*stack_a, 10);
+	print_list(*stack_b, 10);
 	write(1, "Ciao\n", 5);
-	ft_push(stackB, stackA, 'b');
-	print_list(*stackA, 10);
-	print_list(*stackB, 10);
+	ft_push(stack_b, stack_a, 'b');
+	print_list(*stack_a, 10);
+	print_list(*stack_b, 10);
 	/*printf("This should fail:\n");
-	ft_push(stackB, stackA);*/
+	ft_push(stack_b, stack_a);*/
 }
 
-void	test_stack(t_list **stackA, t_list **stackB)
+void	test_stack(t_list **stack_a, t_list **stack_b)
 {
-/*	test_rotate(&stackA);
-	print_list(stackA, 10);
+/*	test_rotate(&stack_a);
+	print_list(stack_a, 10);
 	write(1, "\nBella\n", 6);*/
-	test_swap(stackA);
-	print_list(*stackA, 10);
-/*	test_swap(&stackB);
-	print_list(stackB, 10);
-	test_push(&stackA, &stackB);
-	test_push(&stackA, &stackB);
+	test_swap(stack_a);
+	print_list(*stack_a, 10);
+/*	test_swap(&stack_b);
+	print_list(stack_b, 10);
+	test_push(&stack_a, &stack_b);
+	test_push(&stack_a, &stack_b);
 	test_success("  Push  ");*/
-	(void) stackB;
+	(void) stack_b;
 }

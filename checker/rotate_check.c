@@ -6,22 +6,22 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:07:44 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/17 10:30:51 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:50:23 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
 
-void	ft_rotate_both_check(t_list **stackA, t_list **stackB)
+void	ft_rotate_both_check(t_list **stack_a, t_list **stack_b)
 {
-	ft_rotate(stackA);
-	ft_rotate(stackB);
+	ft_rotate(stack_a);
+	ft_rotate(stack_b);
 }
 
-void	ft_rotate_rev_both_check(t_list **stackA, t_list **stackB)
+void	ft_rotate_rev_both_check(t_list **stack_a, t_list **stack_b)
 {
-	ft_rotate_rev(stackA);
-	ft_rotate_rev(stackB);
+	ft_rotate_rev(stack_a);
+	ft_rotate_rev(stack_b);
 }
 
 void	ft_rotate_check(t_list **stack)

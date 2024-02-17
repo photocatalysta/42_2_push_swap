@@ -6,14 +6,14 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 09:51:27 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 15:05:38 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:51:19 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
 #include <stdio.h>
 
-int	ft_max_pow_3(t_list *stackA)
+int	ft_max_pow_3(t_list *stack_a)
 {
 	t_list	*temp;
 	int		n_max;
@@ -22,7 +22,7 @@ int	ft_max_pow_3(t_list *stackA)
 
 	pos_max = 0;
 	n_max = 0;
-	temp = stackA;
+	temp = stack_a;
 	while (temp)
 	{
 		pos = temp->position;
@@ -38,65 +38,65 @@ int	ft_max_pow_3(t_list *stackA)
 	return (n_max);
 }
 
-void	ft_push_a(t_list **stackA, t_list **stackB, int digit)
+void	ft_push_a(t_list **stack_a, t_list **stack_b, int digit)
 {
-	int	l_stackA;
+	int	l_stack_a;
 	int	i;
 
 	i = -1;
-	l_stackA = ft_lstsize(*stackA);
-	while (++i < l_stackA)
+	l_stack_a = ft_lstsize(*stack_a);
+	while (++i < l_stack_a)
 	{
-		if (((*stackA)->position / ft_pow(3, digit)) % 3 == 1)
+		if (((*stack_a)->position / ft_pow(3, digit)) % 3 == 1)
 		{
 			write(1, "ra\n", 3);
-			ft_rotate(stackA);
+			ft_rotate(stack_a);
 			continue ;
 		}
-		ft_push(stackA, stackB, 'b');
-		if (((*stackB)->position / ft_pow(3, digit)) % 3 == 2)
+		ft_push(stack_a, stack_b, 'b');
+		if (((*stack_b)->position / ft_pow(3, digit)) % 3 == 2)
 		{
-			if (ft_lstsize(*stackB) > 1)
+			if (ft_lstsize(*stack_b) > 1)
 			{
 				write(1, "rb\n", 3);
-				ft_rotate(stackB);
+				ft_rotate(stack_b);
 			}
 		}
 	}
 }
 
-void	ft_push_b(t_list **stackA, t_list **stackB, int digit)
+void	ft_push_b(t_list **stack_a, t_list **stack_b, int digit)
 {
-	int	l_stackB;
+	int	l_stack_b;
 	int	i;
 
 	i = -1;
-	l_stackB = ft_lstsize(*stackB);
-	while (++i < l_stackB)
+	l_stack_b = ft_lstsize(*stack_b);
+	while (++i < l_stack_b)
 	{
-		ft_push(stackB, stackA, 'a');
-		if (((*stackA)->position / ft_pow(3, digit)) % 3 == 2)
+		ft_push(stack_b, stack_a, 'a');
+		if (((*stack_a)->position / ft_pow(3, digit)) % 3 == 2)
 		{
 			write(1, "ra\n", 3);
-			ft_rotate(stackA);
+			ft_rotate(stack_a);
 		}
 	}
 }
 
-void	ft_stack_radixsort(t_list **stackA, t_list **stackB)
+void	ft_stack_radixsort(t_list **stack_a, t_list **stack_b)
 {
-	int digit;
+	int	digit;
 	int	i;
 
-	digit = ft_max_pow_3(*stackA);
+	digit = ft_max_pow_3(*stack_a);
 //	printf("Digit: %i", digit);
 	i = 0;
 	while (i < digit)
 	{
-		ft_push_a(stackA, stackB, i);
-		ft_push_b(stackA, stackB, i);
+		ft_push_a(stack_a, stack_b, i);
+		ft_push_b(stack_a, stack_b, i);
 		i++;
 	}
-//	print_list(*stackA, 10);
-//	print_list(*stackB, 10);
+//	print_list(*stack_a, 10);
+//	print_list(*stack_b, 10);
 }

@@ -6,37 +6,38 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 08:38:27 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/17 10:39:37 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:58:45 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_push_swap.h"
 
-void	make_move(t_list **stackA, t_list **stackB, char *line)
+void	make_move(t_list **stack_a, t_list **stack_b, char *line)
 {
 	if (!ft_strncmp(line, "sa\n", 5))
-		ft_swap_check(stackA);
+		ft_swap_check(stack_a);
 	else if (!ft_strncmp(line, "sb\n", 5))
-		ft_swap_check(stackB);
+		ft_swap_check(stack_b);
 	else if (!ft_strncmp(line, "ra\n", 5))
-		ft_rotate_check(stackA);
+		ft_rotate_check(stack_a);
 	else if (!ft_strncmp(line, "rb\n", 5))
-		ft_rotate_check(stackB);
+		ft_rotate_check(stack_b);
 	else if (!ft_strncmp(line, "rr\n", 5))
-		ft_rotate_both_check(stackA, stackB);
+		ft_rotate_both_check(stack_a, stack_b);
 	else if (!ft_strncmp(line, "rrr\n", 5))
-		ft_rotate_rev_both_check(stackA, stackB);
+		ft_rotate_rev_both_check(stack_a, stack_b);
 	else if (!ft_strncmp(line, "rra\n", 5))
-		ft_rotate_rev_check(stackA);
+		ft_rotate_rev_check(stack_a);
 	else if (!ft_strncmp(line, "rrb\n", 5))
-		ft_rotate_rev_check(stackB);
+		ft_rotate_rev_check(stack_b);
 	else if (!ft_strncmp(line, "pa\n", 5))
-		ft_push_check(stackA, stackB);
+		ft_push_check(stack_a, stack_b);
 	else if (!ft_strncmp(line, "pb\n", 5))
-		ft_push_check(stackA, stackB);
+		ft_push_check(stack_a, stack_b);
 }
 
-void	read_stdin(t_list **stackA, t_list **stackB)
+// This doesn't nead the read part before, check if it works without
+void	read_stdin(t_list **stack_a, t_list **stack_b)
 {
 	int		buff_read;
 	char	*buff;
@@ -49,10 +50,10 @@ void	read_stdin(t_list **stackA, t_list **stackB)
 	while (buff_read > 0)
 	{
 		buff_read = read(STDIN_FILENO, buff, BUFFER_SIZE);
-		while(ft_strchr(buff, '\n'))
+		while (ft_strchr(buff, '\n'))
 		{
-			//line = get_next_line(fd); // This doesn't nead the read part before, check if it works without
-			make_move(stackA, stackB, line);
+			//line = get_next_line(fd);
+			make_move(stack_a, stack_b, line);
 			free(line);
 			line = NULL;
 		}
@@ -61,16 +62,16 @@ void	read_stdin(t_list **stackA, t_list **stackB)
 
 int	main(int argc, char **argv)
 {
-	t_list	*stackA;
-	t_list	*stackB;
+	t_list	*stack_a;
+	t_list	*stack_b;
 
-	stackA = NULL;
-	stackB = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc < 2)
 		return (0); // This is to be double checked
-	stackA = ft_init_list(argc, argv, stackA, NULL);
-	read_stdin(&stackA, &stackB);
-	if (is_ordered(stackA) && stackB == NULL)
+	stack_a = ft_init_list(argc, argv, stack_a, NULL);
+	read_stdin(&stack_a, &stack_b);
+	if (is_ordered(stack_a) && stack_b == NULL)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
