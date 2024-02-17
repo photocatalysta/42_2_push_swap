@@ -1,6 +1,6 @@
 SRC_MAIN = main.c
 SRCS = rotate.c swap.c push.c utils.c utils2.c fast_sort.c math.c moves.c init.c
-SRCS_BONUS = checker/checker.c checker/rotate_check.c checker/swap_check.c checker/push_check.c
+SRCS_BONUS = checker_func/checker.c checker_func/rotate_check.c checker_func/swap_check.c checker_func/push_check.c
 SRCS_TEST = test_utils.c
 
 HEADERS = ft_push_swap.h
@@ -31,29 +31,29 @@ all : $(LIBFT) $(NAME)
 
 -include $(DEPS)
 
-%.o : %.c $(MAKEFILE)
+%.o : %.c ft_push_swap.h $(MAKEFILE)
 	$(CC) $(FLAGS) -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJS) $(OBJ_MAIN)
 	$(CC) $(FLAGS) $(LIBFT) $(OBJS) $(OBJ_MAIN) -o $(NAME)
 
 $(LIBFT) :
-	make bonus -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
 clean :
 	make clean -C $(LIBFT_DIR)
-	$(REMOVE) $(OBJS) $(OBJ_MAIN) $(OBJS_BONUS) $(DEPS) $(DEP_MAIN) $(DEPS_BONUS)
+	$(REMOVE) $(OBJS) $(OBJ_MAIN) $(OBJS_BONUS) $(OBJS_TEST) $(DEPS) $(DEP_MAIN) $(DEPS_BONUS)
 
 fclean : clean
 	make fclean -C $(LIBFT_DIR)
 	$(REMOVE) $(NAME) $(CHECKER)
 
-test : $(LIBFT) $(OBJS) $(OBJ_MAIN) $(OBJS_TEST)
+test : $(LIBFT) $(OBJS) $(OBJ_MAIN) $(OBJS_TEST) $(OBJS_BONUS)
 	$(CC) -g $(FLAGS) $(LIBFT) $(OBJS) $(OBJ_MAIN) $(OBJS_TEST) -o $(NAME)
 
-$(CHECKER) : bonus
+$(CHECKER) : $(LIBFT) $(OBJS_BONUS) $(OBJS) $(OBJS_TEST)
+	$(CC) $(FLAGS) $(LIBFT) $(OBJS) $(OBJS_BONUS) $(OBJS_TEST) -o $(CHECKER)
 
-bonus : $(LIBFT) $(OBJS_BONUS) $(OBJS)
-	$(CC) $(FLAGS) $(LIBFT) $(OBJS) $(OBJS_BONUS) -o $(NAME)
+bonus : $(CHECKER)
 
-.PHONY: all bonus clean fclean re
+.PHONY: all test clean fclean re

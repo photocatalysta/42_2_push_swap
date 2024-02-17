@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:16:31 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/17 10:54:58 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 11:31:51 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	ft_rotate_check(t_list **stack);
 void	ft_rotate_rev_check(t_list **stack);
 void	ft_swap_check(t_list **lst);
 void	ft_push_check(t_list **stackFrom, t_list **stackTo);
+t_list	*ft_init_args_check(t_list *stack, char **argv);
+t_list	*ft_init_list_check(int argc, char **argv, t_list *stack);
 
 // Testing functions
 void	print_list(t_list *list, int c);

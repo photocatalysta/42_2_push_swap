@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 10:45:36 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/17 10:53:33 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 11:28:59 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ t_list	*ft_init_args(t_list *stack, char **argv, int **pos)
 		if (ft_lstval(stack, val))
 			free_exit(&stack, NULL, 1);
 		ft_lstadd_back(&stack, temp);
-		if (pos)
-			(*pos)[i - 1] = val;
+		(*pos)[i - 1] = val;
 	}
 	return (stack);
 }
