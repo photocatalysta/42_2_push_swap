@@ -6,7 +6,7 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:16:31 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/16 18:39:55 by jsala            ###   ########.fr       */
+/*   Updated: 2024/02/17 10:46:35 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <fcntl.h>
 # include "libft/libft.h"
 
 # ifndef BUFFER_SIZE
@@ -28,6 +29,11 @@
 int		*ft_sort_int(int *arr, int size);
 t_list	*ft_init_pos(t_list *stackA, int *arr, int argc);
 t_list	*ft_init_args(t_list *stack, char **argv, int **pos);
+
+int		*ft_sort_int(int *arr, int size);
+t_list	*ft_init_args(t_list *stack, char **argv, int **pos);
+t_list	*ft_init_list(int argc, char **argv, t_list *stack, int **pos);
+void	ft_push_swap(t_list **stackA, t_list **stackB);
 
 t_list	*ft_init_list(int argc, char **argv, t_list *stack, int **pos);
 t_list	*ft_delone(t_list *stack);
@@ -73,6 +79,14 @@ int		ft_lstmax(t_list *stack);
 
 // Exit functions
 void	free_exit(t_list **stackA, t_list **stackB, int exit_val);
+
+// Checker functions
+void	ft_rotate_both_check(t_list **stackA, t_list **stackB);
+void	ft_rotate_rev_both_check(t_list **stackA, t_list **stackB);
+void	ft_rotate_check(t_list **stack);
+void	ft_rotate_rev_check(t_list **stack);
+void	ft_swap_check(t_list **lst);
+void	ft_push_check(t_list **stackFrom, t_list **stackTo);
 
 // Testing functions
 void	print_list(t_list *list, int c);
