@@ -18,6 +18,10 @@
 # include <limits.h>
 # include "libft/libft.h"
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 512
+# endif
+
 //ADD FUNCTIONS
 
 //Ordinate integers array
