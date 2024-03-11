@@ -6,12 +6,11 @@
 /*   By: jsala <jsala@student.42barcelona.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 09:51:27 by jsala             #+#    #+#             */
-/*   Updated: 2024/02/17 10:51:19 by jsala            ###   ########.fr       */
+/*   Updated: 2024/03/11 09:18:16 by jsala            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_push_swap.h"
-#include <stdio.h>
 
 int	ft_max_pow_3(t_list *stack_a)
 {
@@ -89,7 +88,6 @@ void	ft_stack_radixsort(t_list **stack_a, t_list **stack_b)
 	int	i;
 
 	digit = ft_max_pow_3(*stack_a);
-//	printf("Digit: %i", digit);
 	i = 0;
 	while (i < digit)
 	{
@@ -97,6 +95,4 @@ void	ft_stack_radixsort(t_list **stack_a, t_list **stack_b)
 		ft_push_b(stack_a, stack_b, i);
 		i++;
 	}
-//	print_list(*stack_a, 10);
-//	print_list(*stack_b, 10);
 }
